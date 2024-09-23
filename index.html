@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@400&display=swap" rel="stylesheet">
+    <title>FROMMIHO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'M PLUS 1', sans-serif; /* M PLUS 1 フォントを適用 */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            font-size: 1.5rem;
+        }
+        .link {
+            font-size: 1.2rem;
+            color: #3f3f3f;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="message" class="message"></div>
+    <a id="link" class="link hidden" href="https://example.com/present" target="_blank">ひと息ついてくださいな</a>
+</div>
+
+<script>
+    // 文章のリスト
+    const messages = [
+        "お、開いてくれてる😲ありがとうございます。",
+        "あ、タップで次のページにって、2ページ目ってことはわかってますね（笑）",
+        "さて、本題に入りますね。",
+        "向陽さんへ",
+        "えっと、まずは、半年こんな私と付き合ってくれてありがとうございます。",
+        "正直なところ、4月に付き合ったときは、こんなに長く付き合えると思っていませんでした。",
+        "付き合うってことに対しての覚悟とかあの時はあまり考えてなかったです。",
+        "でも、それはなんとなく気づいてました...よね？",
+        "なんとなく半年、振り返ってみると、最初の３ヶ月とそれ以降で大分変わるなと、",
+        "自分的にめちゃくちゃ切り替えポイントはそこかと、",
+        "このとき「向き合う」って言葉が少し嫌になるくらい、頭にありました。",
+        "でも、あのときそれを考えれたのは良い機会だったのかなって、あんな形で言葉にさせてしまったのは、大分反省だったのですが、",
+        "あの電話のときから、向きあえたのかなって、逃げなくなったかなって、",
+        "でも、なかなか付き合うって難しいですね、考えることがたくさん。",
+        "自分は今まで、自分のことばっかで、何をしたら相手を傷つけるとかに疎すぎて、あまり考えてこなくて、",
+        "めちゃくちゃ傷つけてますよね、私...（笑）そして、心配めちゃくちゃさせてる気がします...",
+        "ただ、いざ、恋愛をしてみてもそこがなかなか難しくて、",
+        "前に迷ったときに「これをしたら、相手が喜ぶかな、悲しむかな」ってのを考えたら...",
+        "みたいなことを言ってくれたと思うんですけど、なかなか、それを考えても、なんか的外れな行動をしてしまったりして、って感じで",
+        "自分の課題だな～と思いながら、自分って恋愛向いてないのかもって思って、",
+        "でも、そんな私を向陽さんは受け入れてくれてるんだなって、",
+        "この間、話した件について、私も考えてみたんですけど、向陽さんにとって嫌なことって、大きく言えば一つだけなのに、",
+        "そこも、私は受け入れず自分勝手に行動していたなと...ほんとにごめんなさい。",
+        "普段私のわがままに付き合ってくれているのに、FEとか、仕事の話聞いてくれたり、ライン頻度合わせてくれたりとか、趣味の時間をめちゃくちゃ使っているのに文句言わないとか...",
+        "感謝しかないです。",
+        "なんか、書こうと思うと永遠にかけそうなのでこの辺にしときますね",
+        "あ、一つ言い忘れてた。最近、もっと甘えていいんですよって言ってくれるの嬉しいです。",
+        "でもご存じの通り苦手です。",
+        "多分、ほんとに何かでいっぱいになってしまったときは、甘えれる自信は正直なくて、やっぱり、すこしは、出来る自分を向陽さんに見せていたいのだと、",
+        "なんか、まとまってない自分の話ばかりすみません。",
+        "最後に、自分で決めた決断にいつもまっすぐな向陽さんをほんと尊敬しています。",
+        "研究も、インターンも、恋愛に対しても、いつもその姿を見て、私も頑張ろうって思えます。",
+        "そんな向陽さんに私が少しでもポジティブでプラスの影響を送れたらななんて思っています。",
+        "真面目な話ばかりであれですが、こんなに考えてて私はほんとに向陽さんのことが好きなんだなって。",
+        "そんな感じで、改めて、こんな私と半年も付き合っていただきありがとうございます。",
+        "そして、これからもよろしくお願いいします！",
+        "あ、こんな長々とよんでもらったので、些細ですがプレゼントです。というのは若干冗談で、日ごろの感謝です！",
+        "いらなかったら私が飲むので、遠慮なくいってください（笑）","次のページのリンクから多分飛べるはずです",""];
+
+    let currentPage = 0; // 現在のページ番号
+
+    // HTML要素の参照
+    const messageElement = document.getElementById('message');
+    const linkElement = document.getElementById('link');
+
+    // 最初のメッセージを表示
+    function showMessage() {
+        if (currentPage < messages.length - 1) {
+            messageElement.textContent = messages[currentPage];
+            linkElement.classList.add('hidden');
+        } else {
+            messageElement.textContent = messages[currentPage];
+            linkElement.classList.remove('hidden'); // 最後のページでリンクを表示
+        }
+    }
+
+    // タップ/クリックで次のページへ
+    document.body.addEventListener('click', function() {
+        if (currentPage < messages.length) {
+            currentPage++;
+            showMessage();
+        }
+    });
+    // 初期表示
+    showMessage();
+</script>
+
+</body>
+</html>
